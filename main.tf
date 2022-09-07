@@ -7,7 +7,6 @@ module "main" {
   initial_database                         = var.initial_database
   master_db_username                       = var.master_db_username
   master_db_password                       = var.master_db_password
-  tags                                     = var.tags
   kms_grantees                             = var.kms_grantees
   snapshot_identifier                      = var.snapshot_identifier
   alarms_email_recipients                  = var.alarms_email_recipients
@@ -30,4 +29,9 @@ module "main" {
   eks_cluster_name                         = var.eks_cluster_name
   app_name                                 = var.app_name
   iam_arns_to_grant_sns_kms_access_to      = var.iam_arns_to_grant_sns_kms_access_to
+  tags = {
+    Company           = var.company_name
+    Deployment_Method = "terraform"
+    Environment       = var.environment
+  }
 }
