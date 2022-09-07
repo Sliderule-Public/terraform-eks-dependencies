@@ -1,0 +1,12 @@
+# This file is a sample terraform vars file, to be copied to a *.tfvars file for use with this stack.
+# It only includes required variables. Refer to ./variables.tf for optional variables.
+# Copy this to a .tfvars file for each environment
+
+company_name = ""
+environment = ""
+region = ""
+app_vpc_cidr = ""
+initial_database = ""
+master_db_username = ""
+master_db_password = ""
+                 
