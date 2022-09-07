@@ -149,5 +149,3 @@ variable "iam_arns_to_grant_sns_kms_access_to" {
   type    = list(string)
   default = []
 }
-
-test
