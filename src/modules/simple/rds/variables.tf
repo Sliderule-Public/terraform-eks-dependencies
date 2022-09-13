@@ -74,3 +74,8 @@ variable "deploy_read_replica" {
   default     = false
   description = "Whether to add a read replica"
 }
+variable "use_only_private_subnets" {
+  type    = bool
+  default = false
+  description = "If true, will use only private subnets"
+}
