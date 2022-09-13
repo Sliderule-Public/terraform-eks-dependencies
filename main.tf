@@ -29,6 +29,7 @@ module "main" {
   eks_cluster_name                         = var.eks_cluster_name
   app_name                                 = var.app_name
   iam_arns_to_grant_sns_kms_access_to      = var.iam_arns_to_grant_sns_kms_access_to
+  use_only_private_subnets                 = var.use_only_private_subnets
   tags = {
     Company           = var.company_name
     Deployment_Method = "terraform"
