@@ -37,11 +37,3 @@ output "SQS_QUEUE_NAME" {
 output "SQS_URL" {
   value = module.sqs.url
 }
-
-output "EKS_TASK_ROLE_ARN" {
-  value = aws_iam_role.eks-tasks.arn
-}
-
-output "EKS_ALB_CONTROLLER_ROLE_ARN" {
-  value = aws_iam_role.eks-alb-controller.arn
-}

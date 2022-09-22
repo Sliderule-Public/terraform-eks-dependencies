@@ -16,9 +16,9 @@ module "rds_instance" {
   master_username          = var.master_db_username
   snapshot_identifier      = var.snapshot_identifier != "" ? var.snapshot_identifier : ""
   skip_final_snapshot      = var.skip_final_snapshot
-  name_override            = "public" # Workaround for compatibility issues with the other stack that uses this module, `ecs-app`
+  name_override            = "sliderule" # Workaround for compatibility issues with the other stack that uses this module, `ecs-app`
   sns_arn                  = aws_sns_topic.alarms.arn
   instance_type            = var.database_instance_type
-  deploy_read_replica      = false
+  deploy_read_replica      = var.deploy_read_replica
   use_only_private_subnets = var.use_only_private_subnets
 }

@@ -46,15 +46,6 @@ variable "alarms_email_recipients" {
   default     = []
   description = "list of emails to receive various alarms for this stack"
 }
-variable "server_iam_role_policy_statements" {
-  type = list(object({
-    effect    = string
-    actions   = list(string)
-    resources = list(string)
-  }))
-  default     = []
-  description = "optional additional IAM policies to apply to the IAM role assigned to the EKS tasks"
-}
 variable "skip_final_snapshot" {
   type        = bool
   default     = false
@@ -121,16 +112,6 @@ variable "api_eks_port" {
   default     = 31257
   description = "used in helm to expose the API service through security group rules"
 }
-variable "use_variable_scripts" {
-  type        = bool
-  default     = false
-  description = "if true, null_resource resources will be used to run scripts that generate var files for kubernetes/aws/shieldrule"
-}
-variable "certificate_arn" {
-  default     = ""
-  description = "ARN of the AWS ACM certificate to use with optional EKS-made application load balancers. Only required if var.use_scripts is true and you're using Sliderule-provided AWS EKS ALB functionality."
-  type        = string
-}
 variable "database_instance_type" {
   type    = string
   default = "db.t3.xlarge"
@@ -139,11 +120,6 @@ variable "eks_cluster_name" {
   type        = string
   default     = ""
   description = "Name of EKS cluster to be used to create OIDC providers for IAM roles. Only required if deploy_eks is false"
-}
-variable "app_name" {
-  type        = string
-  default     = "shieldrule"
-  description = "used to build an SSH key name for the optional EKS node group."
 }
 variable "iam_arns_to_grant_sns_kms_access_to" {
   type    = list(string)

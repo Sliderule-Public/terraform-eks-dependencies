@@ -26,11 +26,6 @@ variable "master_db_password" {
   type        = string
   description = "password to user for master user in RDS"
 }
-variable "tags" {
-  type        = any
-  default     = {}
-  description = "optional AWS tags to apply to most resources deployed with this stack"
-}
 variable "kms_grantees" {
   type        = list(string)
   description = "ARNs of IAM users to allow decrypt and encrypt access to KMS keys"

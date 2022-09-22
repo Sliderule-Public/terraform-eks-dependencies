@@ -16,8 +16,6 @@ locals {
   public_subnet_ids       = var.create_vpc == true ? module.shared_vpc[0].public_subnet_ids : var.public_subnet_ids
   private_subnet_ids      = var.create_vpc == true ? module.shared_vpc[0].private_subnet_ids : var.private_subnet_ids
   database_az             = var.create_vpc == true ? module.shared_vpc[0].az_1 : data.aws_availability_zones.available.names[0]
-  eks_oidc_issuer         = var.deploy_eks == true ? aws_eks_cluster.main[0].identity[0].oidc[0].issuer : data.aws_eks_cluster.main[0].identity[0].oidc[0].issuer
-  eks_cluster_subnets_ids = var.use_only_private_subnets == true ? local.private_subnet_ids : local.public_subnet_ids
 }
 
 terraform {
@@ -38,14 +36,4 @@ terraform {
   }
 
   required_version = ">= 0.14.9"
-
-  //
-  // Optional S3 backend
-  //
-  //  backend "s3" {
-  //    bucket  = "STATE_BUCKET"
-  //    key     = "STATE_PATH/terraform.tfstate"
-  //    region  = "REGION"
-  //  }
-
 }

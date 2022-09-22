@@ -20,10 +20,3 @@ module "server_docs_bucket" {
   upload_cors_rules_enabled = true
   tags                      = var.tags
 }
-
-resource "aws_s3_bucket_object" "object" {
-  depends_on = [null_resource.populate_sqs_values[0]]
-  bucket = module.infrastructure_bucket.bucket
-  key    = "env-files/api/${var.environment}.env"
-  source = "${var.environment}.env"
-}
