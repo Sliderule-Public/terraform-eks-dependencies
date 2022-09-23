@@ -1,5 +1,5 @@
 module "rds_instance" {
-  source                   = "../src/modules/simple/rds"
+  source                   = "git@github.com:Modern-Logic/terraform-modules.git//simple/rds"
   environment              = var.environment
   company_name             = var.company_name
   region                   = var.region

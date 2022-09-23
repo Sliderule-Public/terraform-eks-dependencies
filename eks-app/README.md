@@ -19,20 +19,20 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_infrastructure_bucket"></a> [infrastructure\_bucket](#module\_infrastructure\_bucket) | ../src/modules/simple/s3_bucket | n/a |
-| <a name="module_main_key"></a> [main\_key](#module\_main\_key) | ../src/modules/simple/kms_key | n/a |
-| <a name="module_pod_security_group"></a> [pod\_security\_group](#module\_pod\_security\_group) | ../src/modules/simple/vpc_security_group | n/a |
-| <a name="module_rds_instance"></a> [rds\_instance](#module\_rds\_instance) | ../src/modules/simple/rds | n/a |
-| <a name="module_rds_key"></a> [rds\_key](#module\_rds\_key) | ../src/modules/simple/kms_key | n/a |
-| <a name="module_rds_role"></a> [rds\_role](#module\_rds\_role) | ../src/modules/simple/iam_role | n/a |
-| <a name="module_rds_security_group"></a> [rds\_security\_group](#module\_rds\_security\_group) | ../src/modules/simple/vpc_security_group | n/a |
-| <a name="module_redis"></a> [redis](#module\_redis) | ../src/modules/simple/redis | n/a |
-| <a name="module_redis_security_group"></a> [redis\_security\_group](#module\_redis\_security\_group) | ../src/modules/simple/vpc_security_group | n/a |
-| <a name="module_server_docs_bucket"></a> [server\_docs\_bucket](#module\_server\_docs\_bucket) | ../src/modules/simple/s3_bucket | n/a |
-| <a name="module_shared_eks_launch_template"></a> [shared\_eks\_launch\_template](#module\_shared\_eks\_launch\_template) | ../src/modules/simple/launch_template | n/a |
-| <a name="module_shared_vpc"></a> [shared\_vpc](#module\_shared\_vpc) | ../src/modules/composite/vpc | n/a |
-| <a name="module_sns_key"></a> [sns\_key](#module\_sns\_key) | ../src/modules/simple/kms_key | n/a |
-| <a name="module_sqs"></a> [sqs](#module\_sqs) | ../src/modules/simple/sqs_queue | n/a |
+| <a name="module_infrastructure_bucket"></a> [infrastructure\_bucket](#module\_infrastructure\_bucket) | git@github.com:Modern-Logic/terraform-modules.git//simple/s3_bucket | n/a |
+| <a name="module_main_key"></a> [main\_key](#module\_main\_key) | git@github.com:Modern-Logic/terraform-modules.git//simple/kms_key | n/a |
+| <a name="module_pod_security_group"></a> [pod\_security\_group](#module\_pod\_security\_group) | git@github.com:Modern-Logic/terraform-modules.git//simple/vpc_security_group | n/a |
+| <a name="module_rds_instance"></a> [rds\_instance](#module\_rds\_instance) | git@github.com:Modern-Logic/terraform-modules.git//simple/rds | n/a |
+| <a name="module_rds_key"></a> [rds\_key](#module\_rds\_key) | git@github.com:Modern-Logic/terraform-modules.git//simple/kms_key | n/a |
+| <a name="module_rds_role"></a> [rds\_role](#module\_rds\_role) | git@github.com:Modern-Logic/terraform-modules.git//simple/iam_role | n/a |
+| <a name="module_rds_security_group"></a> [rds\_security\_group](#module\_rds\_security\_group) | git@github.com:Modern-Logic/terraform-modules.git//simple/vpc_security_group | n/a |
+| <a name="module_redis"></a> [redis](#module\_redis) | git@github.com:Modern-Logic/terraform-modules.git//simple/redis | n/a |
+| <a name="module_redis_security_group"></a> [redis\_security\_group](#module\_redis\_security\_group) | git@github.com:Modern-Logic/terraform-modules.git//simple/vpc_security_group | n/a |
+| <a name="module_server_docs_bucket"></a> [server\_docs\_bucket](#module\_server\_docs\_bucket) | git@github.com:Modern-Logic/terraform-modules.git//simple/s3_bucket | n/a |
+| <a name="module_shared_eks_launch_template"></a> [shared\_eks\_launch\_template](#module\_shared\_eks\_launch\_template) | git@github.com:Modern-Logic/terraform-modules.git//simple/launch_template | n/a |
+| <a name="module_shared_vpc"></a> [shared\_vpc](#module\_shared\_vpc) | git@github.com:Modern-Logic/terraform-modules.git//composite/vpc | n/a |
+| <a name="module_sns_key"></a> [sns\_key](#module\_sns\_key) | git@github.com:Modern-Logic/terraform-modules.git//simple/kms_key | n/a |
+| <a name="module_sqs"></a> [sqs](#module\_sqs) | git@github.com:Modern-Logic/terraform-modules.git//simple/sqs_queue | n/a |
 
 ## Resources
 

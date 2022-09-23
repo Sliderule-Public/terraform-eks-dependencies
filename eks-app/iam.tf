@@ -2,7 +2,7 @@ module "rds_role" {
   environment  = var.environment
   company_name = var.company_name
   tags         = var.tags
-  source       = "../src/modules/simple/iam_role"
+  source       = "git@github.com:Modern-Logic/terraform-modules.git//simple/iam_role"
   role_name    = "rds"
   service      = "rds.amazonaws.com"
   policy       = <<-EOF

@@ -1,5 +1,5 @@
 module "main_key" {
-  source       = "../src/modules/simple/kms_key"
+  source       = "git@github.com:Modern-Logic/terraform-modules.git//simple/kms_key"
   environment  = var.environment
   region       = var.region
   company_name = var.company_name
@@ -11,7 +11,7 @@ module "main_key" {
 }
 
 module "rds_key" {
-  source       = "../src/modules/simple/kms_key"
+  source       = "git@github.com:Modern-Logic/terraform-modules.git//simple/kms_key"
   environment  = var.environment
   region       = var.region
   company_name = var.company_name
@@ -79,7 +79,7 @@ data "aws_iam_policy_document" "main_kms_key" {
 }
 
 module "sns_key" {
-  source       = "../src/modules/simple/kms_key"
+  source       = "git@github.com:Modern-Logic/terraform-modules.git//simple/kms_key"
   environment  = var.environment
   region       = var.region
   company_name = var.company_name
