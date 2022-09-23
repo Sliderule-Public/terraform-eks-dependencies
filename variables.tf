@@ -28,7 +28,11 @@ variable "master_db_password" {
 }
 variable "tags" {
   type        = any
-  default     = {}
+  default     = {
+    Company = var.company_name
+    Environment = var.environment
+    Deployment_Method = "terraform"
+  }
   description = "optional AWS tags to apply to most resources deployed with this stack"
 }
 variable "kms_grantees" {
