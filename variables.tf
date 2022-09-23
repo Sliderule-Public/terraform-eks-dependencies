@@ -18,14 +18,6 @@ variable "initial_database" {
   type        = string
   description = "name of initial database in RDS"
 }
-variable "master_db_username" {
-  type        = string
-  description = "master db username to use for RDS"
-}
-variable "master_db_password" {
-  type        = string
-  description = "password to user for master user in RDS"
-}
 variable "tags" {
   type        = map(any)
   default     = {}
