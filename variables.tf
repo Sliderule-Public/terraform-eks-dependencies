@@ -27,12 +27,8 @@ variable "master_db_password" {
   description = "password to user for master user in RDS"
 }
 variable "tags" {
-  type        = any
-  default     = {
-    Company = var.company_name
-    Environment = var.environment
-    Deployment_Method = "terraform"
-  }
+  type        = map(any)
+  default     = {}
   description = "optional AWS tags to apply to most resources deployed with this stack"
 }
 variable "kms_grantees" {
@@ -110,7 +106,7 @@ variable "iam_arns_to_grant_sns_kms_access_to" {
   default = []
 }
 variable "use_only_private_subnets" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
   description = "If true, will use only private subnets to provision all network-dependant resources"
 }
