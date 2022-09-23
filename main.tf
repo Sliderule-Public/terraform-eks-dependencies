@@ -18,10 +18,6 @@ module "main" {
   vpc_id                                   = var.vpc_id
   private_subnet_ids                       = var.private_subnet_ids
   public_subnet_ids                        = var.public_subnet_ids
-  deploy_eks                               = var.deploy_eks
-  web_eks_port                             = var.web_eks_port
-  docs_eks_port                            = var.docs_eks_port
-  api_eks_port                             = var.api_eks_port
   database_instance_type                   = var.database_instance_type
   eks_cluster_name                         = var.eks_cluster_name
   iam_arns_to_grant_sns_kms_access_to      = var.iam_arns_to_grant_sns_kms_access_to

@@ -92,26 +92,6 @@ variable "public_subnet_ids" {
   description = "only needed if create_vpc is false. Public subnets to use to host some public resources in this stack"
   default     = []
 }
-variable "deploy_eks" {
-  type        = bool
-  default     = true
-  description = "if true, a new EKS cluster is created"
-}
-variable "web_eks_port" {
-  type        = number
-  default     = 31255
-  description = "used in helm to expose the web service through security group rules"
-}
-variable "docs_eks_port" {
-  type        = number
-  default     = 31256
-  description = "used in helm to expose the docs service through security group rules"
-}
-variable "api_eks_port" {
-  type        = number
-  default     = 31257
-  description = "used in helm to expose the API service through security group rules"
-}
 variable "database_instance_type" {
   type    = string
   default = "db.t3.xlarge"

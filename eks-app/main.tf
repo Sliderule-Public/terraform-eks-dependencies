@@ -4,11 +4,6 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-data "aws_eks_cluster" "main" {
-  count = var.deploy_eks == true ? 0 : 1
-  name  = var.eks_cluster_name
-}
-
 
 locals {
   account_id              = data.aws_caller_identity.current.account_id
