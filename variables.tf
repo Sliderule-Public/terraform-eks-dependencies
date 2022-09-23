@@ -97,3 +97,8 @@ variable "use_only_private_subnets" {
   default     = false
   description = "If true, will use only private subnets to provision all network-dependant resources"
 }
+variable "deploy_database" {
+  type        = bool
+  default     = true
+  description = "Option to skip deploying a database, in case you provision your own"
+}
