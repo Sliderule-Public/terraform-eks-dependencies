@@ -12,8 +12,6 @@ module "rds_instance" {
   tags                     = var.tags
   kms_key_arn              = module.rds_key.key_arn
   initial_database         = var.initial_database
-  master_password          = var.master_db_password
-  master_username          = var.master_db_username
   snapshot_identifier      = var.snapshot_identifier != "" ? var.snapshot_identifier : ""
   skip_final_snapshot      = var.skip_final_snapshot
   name_override            = "sliderule" # Workaround for compatibility issues with the other stack that uses this module, `ecs-app`
