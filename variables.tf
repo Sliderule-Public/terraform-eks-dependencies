@@ -18,16 +18,8 @@ variable "initial_database" {
   type        = string
   description = "name of initial database in RDS"
 }
-variable "master_db_username" {
-  type        = string
-  description = "master db username to use for RDS"
-}
-variable "master_db_password" {
-  type        = string
-  description = "password to user for master user in RDS"
-}
 variable "tags" {
-  type        = any
+  type        = map(any)
   default     = {}
   description = "optional AWS tags to apply to most resources deployed with this stack"
 }
@@ -45,15 +37,6 @@ variable "alarms_email_recipients" {
   type        = list(string)
   default     = []
   description = "list of emails to receive various alarms for this stack"
-}
-variable "server_iam_role_policy_statements" {
-  type = list(object({
-    effect    = string
-    actions   = list(string)
-    resources = list(string)
-  }))
-  default     = []
-  description = "optional additional IAM policies to apply to the IAM role assigned to the EKS tasks"
 }
 variable "skip_final_snapshot" {
   type        = bool
@@ -101,56 +84,30 @@ variable "public_subnet_ids" {
   description = "only needed if create_vpc is false. Public subnets to use to host some public resources in this stack"
   default     = []
 }
-variable "deploy_eks" {
-  type        = bool
-  default     = true
-  description = "if true, a new EKS cluster is created"
-}
-variable "web_eks_port" {
-  type        = number
-  default     = 31255
-  description = "used in helm to expose the web service through security group rules"
-}
-variable "docs_eks_port" {
-  type        = number
-  default     = 31256
-  description = "used in helm to expose the docs service through security group rules"
-}
-variable "api_eks_port" {
-  type        = number
-  default     = 31257
-  description = "used in helm to expose the API service through security group rules"
-}
-variable "use_variable_scripts" {
-  type        = bool
-  default     = false
-  description = "if true, null_resource resources will be used to run scripts that generate var files for kubernetes/aws/shieldrule"
-}
-variable "certificate_arn" {
-  default     = ""
-  description = "ARN of the AWS ACM certificate to use with optional EKS-made application load balancers. Only required if var.use_scripts is true and you're using Sliderule-provided AWS EKS ALB functionality."
-  type        = string
-}
 variable "database_instance_type" {
   type    = string
   default = "db.t3.xlarge"
-}
-variable "eks_cluster_name" {
-  type        = string
-  default     = ""
-  description = "Name of EKS cluster to be used to create OIDC providers for IAM roles. Only required if deploy_eks is false"
-}
-variable "app_name" {
-  type        = string
-  default     = "shieldrule"
-  description = "used to build an SSH key name for the optional EKS node group."
 }
 variable "iam_arns_to_grant_sns_kms_access_to" {
   type    = list(string)
   default = []
 }
 variable "use_only_private_subnets" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
   description = "If true, will use only private subnets to provision all network-dependant resources"
+}
+variable "deploy_database" {
+  type        = bool
+  default     = true
+  description = "Option to skip deploying a database, in case you provision your own"
+}
+variable "server_iam_role_policy_statements" {
+  type = list(object({
+    effect    = string
+    actions   = list(string)
+    resources = list(string)
+  }))
+  default     = []
+  description = "optional additional IAM policies to apply to the IAM role assigned to the EKS tasks"
 }
