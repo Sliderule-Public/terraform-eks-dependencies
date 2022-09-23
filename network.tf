@@ -17,14 +17,20 @@ module "rds_security_group" {
   tags                = var.tags
   security_group_name = "rds"
   vpc_id              = local.vpc_id
-  ingress_rules = concat(var.database_security_group_additional_rules, [
+  ingress_rules = var.use_only_private_subnets == false ? concat(local.rds_default_security_group_rules, local.auth_security_group_rules) : local.rds_default_security_group_rules
+}
+
+locals {
+  rds_default_security_group_rules = concat(var.database_security_group_additional_rules, [
     {
       description = "All traffic from private VPC"
       from_port   = 5432
       to_port     = 5432
       protocol    = "tcp"
       cidr_block  = var.app_vpc_cidr
-    },
+    }
+  ])
+  auth_security_group_rules = [
     {
       description = "Auth0"
       from_port   = 5432
@@ -67,5 +73,5 @@ module "rds_security_group" {
       protocol    = "tcp"
       cidr_block  = "3.20.244.231/32"
     }
-  ])
+  ]
 }
