@@ -1,11 +1,3 @@
-output "POSTGRES_HOST" {
-  value = module.rds_instance.address
-}
-
-output "POSTGRES_PORT" {
-  value = module.rds_instance.port
-}
-
 output "ENVIRONMENT" {
   value = var.environment
 }
@@ -36,4 +28,8 @@ output "SQS_QUEUE_NAME" {
 
 output "SQS_URL" {
   value = module.sqs.url
+}
+
+output "EKS_TASK_ROLE_ARN" {
+  value = aws_iam_role.eks-tasks.arn
 }
