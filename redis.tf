@@ -1,5 +1,5 @@
 module "redis_security_group" {
-  source              = "git@github.com:Modern-Logic/terraform-modules.git//simple/vpc_security_group"
+  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group"
   environment         = var.environment
   company_name        = var.company_name
   tags                = var.tags
@@ -17,7 +17,7 @@ module "redis_security_group" {
 }
 
 module "redis" {
-  source             = "git@github.com:Modern-Logic/terraform-modules.git//simple/redis"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/redis"
   environment        = var.environment
   company_name       = var.company_name
   name               = "redis"

@@ -26,7 +26,7 @@ terraform {
 }
 
 module "test" {
-  source       = "git@github.com:Modern-Logic/terraform-eks.git"
+  source       = "github.com/Modern-Logic/terraform-eks.git"
   company_name = "my_company_name"
   environment = "my_environment"
   region = "my_aws_region"
