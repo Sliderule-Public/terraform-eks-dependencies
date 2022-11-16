@@ -5,15 +5,7 @@ module "redis_security_group" {
   tags                = var.tags
   security_group_name = "redis-eks"
   vpc_id              = local.vpc_id
-  ingress_rules = [
-    {
-      description = "All traffic"
-      from_port   = 6379
-      to_port     = 6379
-      protocol    = "tcp"
-      cidr_block  = var.app_vpc_cidr
-    }
-  ]
+  ingress_rules       = var.elasticache_redis_security_group_rules
 }
 
 module "redis" {
