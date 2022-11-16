@@ -59,6 +59,17 @@ variable "database_security_group_additional_rules" {
   default     = []
   description = "optional additional security group rules for the database security group."
 }
+variable "elasticache_redis_security_group_rules" {
+  type = list(object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_block  = string
+  }))
+  default     = []
+  description = "security group rules for the elasticache for redis security group."
+}
 variable "services_to_grant_kms_access_to" {
   type        = list(string)
   default     = []
