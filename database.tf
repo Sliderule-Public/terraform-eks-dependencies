@@ -1,6 +1,6 @@
 module "rds_instance" {
-  count = var.deploy_database == true ? 1 : 0
-  source                   = "github.com/Modern-Logic/terraform-modules.git//simple/rds"
+  count                    = var.deploy_database == true ? 1 : 0
+  source                   = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.0"
   environment              = var.environment
   company_name             = var.company_name
   region                   = var.region
@@ -15,7 +15,7 @@ module "rds_instance" {
   initial_database         = var.initial_database
   snapshot_identifier      = var.snapshot_identifier != "" ? var.snapshot_identifier : ""
   skip_final_snapshot      = var.skip_final_snapshot
-  name_override            = "sliderule" # Workaround for compatibility issues with the other stack that uses this module, `ecs-app`
+  name_override            = "sliderule"
   sns_arn                  = aws_sns_topic.alarms.arn
   instance_type            = var.database_instance_type
   deploy_read_replica      = var.deploy_read_replica
