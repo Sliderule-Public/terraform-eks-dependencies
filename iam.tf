@@ -2,7 +2,7 @@ module "rds_role" {
   environment  = var.environment
   company_name = var.company_name
   tags         = var.tags
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/iam_role"
+  source       = "github.com/Modern-Logic/terraform-modules.git//simple/iam_role?ref=v1.0"
   role_name    = "rds"
   service      = "rds.amazonaws.com"
   policy       = <<-EOF
@@ -41,8 +41,8 @@ data "aws_iam_policy_document" "eks_task" {
   }
 
   statement {
-    effect  = "Allow"
-    actions = ["s3:*"]
+    effect    = "Allow"
+    actions   = ["s3:*"]
     resources = [
       "${module.server_docs_bucket.bucket_arn}/*",
       module.server_docs_bucket.bucket_arn
@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "eks_task" {
 }
 
 resource "aws_iam_role" "eks-tasks" {
-  name  = "${var.company_name}-${var.environment}-app-eks-tasks"
+  name = "${var.company_name}-${var.environment}-app-eks-tasks"
 
   assume_role_policy = <<POLICY
 {

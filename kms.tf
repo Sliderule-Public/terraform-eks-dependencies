@@ -1,23 +1,23 @@
 module "main_key" {
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key"
-  environment  = var.environment
-  region       = var.region
-  company_name = var.company_name
-  account_id   = local.account_id
-  key_name     = "main-key"
-  tags         = var.tags
-  policy       = data.aws_iam_policy_document.main_kms_key.json
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  environment        = var.environment
+  region             = var.region
+  company_name       = var.company_name
+  account_id         = local.account_id
+  key_name           = "main-key"
+  tags               = var.tags
+  policy             = data.aws_iam_policy_document.main_kms_key.json
   usage_grantee_arns = var.kms_grantees
 }
 
 module "rds_key" {
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key"
-  environment  = var.environment
-  region       = var.region
-  company_name = var.company_name
-  account_id   = local.account_id
-  key_name     = "rds-key"
-  tags         = var.tags
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  environment        = var.environment
+  region             = var.region
+  company_name       = var.company_name
+  account_id         = local.account_id
+  key_name           = "rds-key"
+  tags               = var.tags
   usage_grantee_arns = concat(var.kms_grantees, [
     module.rds_role.role_arn
   ])
@@ -25,7 +25,7 @@ module "rds_key" {
 
 data "aws_iam_policy_document" "main_kms_key" {
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "kms:*"
     ]
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "main_kms_key" {
     }
   }
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "kms:Encrypt*",
       "kms:Decrypt*",
@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "main_kms_key" {
   dynamic statement {
     for_each = length(var.services_to_grant_kms_access_to) > 0 ? [1] : []
     content {
-      effect = "Allow"
+      effect  = "Allow"
       actions = [
         "kms:Encrypt*",
         "kms:Decrypt*",
@@ -79,20 +79,20 @@ data "aws_iam_policy_document" "main_kms_key" {
 }
 
 module "sns_key" {
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key"
-  environment  = var.environment
-  region       = var.region
-  company_name = var.company_name
-  account_id   = local.account_id
-  key_name     = "sns-key"
-  tags         = var.tags
-  policy       = data.aws_iam_policy_document.sns_kms_key.json
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  environment        = var.environment
+  region             = var.region
+  company_name       = var.company_name
+  account_id         = local.account_id
+  key_name           = "sns-key"
+  tags               = var.tags
+  policy             = data.aws_iam_policy_document.sns_kms_key.json
   usage_grantee_arns = var.kms_grantees
 }
 
 data "aws_iam_policy_document" "sns_kms_key" {
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "kms:*"
     ]
@@ -105,7 +105,7 @@ data "aws_iam_policy_document" "sns_kms_key" {
     }
   }
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "kms:Encrypt*",
       "kms:Decrypt*",
@@ -131,7 +131,7 @@ data "aws_iam_policy_document" "sns_kms_key" {
   dynamic "statement" {
     for_each = length(var.iam_arns_to_grant_sns_kms_access_to) > 0 ? [1] : []
     content {
-      effect = "Allow"
+      effect  = "Allow"
       actions = [
         "kms:Encrypt*",
         "kms:Decrypt*",

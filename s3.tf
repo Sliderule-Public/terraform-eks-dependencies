@@ -1,5 +1,5 @@
 module "infrastructure_bucket" {
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket"
+  source       = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket?ref=v1.0"
   environment  = var.environment
   region       = var.region
   company_name = var.company_name
@@ -10,7 +10,7 @@ module "infrastructure_bucket" {
 }
 
 module "server_docs_bucket" {
-  source                    = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket"
+  source                    = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket?ref=v1.0"
   environment               = var.environment
   region                    = var.region
   company_name              = var.company_name
