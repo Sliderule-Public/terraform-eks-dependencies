@@ -57,7 +57,8 @@ data "aws_iam_policy_document" "eks_task" {
 }
 
 resource "aws_iam_role" "eks-tasks" {
-  name = "${var.company_name}-${var.environment}-app-eks-tasks"
+  count = var.eks_task_role_arn == "" ? 1 : 0
+  name  = "${var.company_name}-${var.environment}-app-eks-tasks"
 
   assume_role_policy = <<POLICY
 {

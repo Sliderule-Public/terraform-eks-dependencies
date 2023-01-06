@@ -1,3 +1,7 @@
+locals {
+  task_role_to_grant_kms_access = var.eks_task_role_arn != "" ? var.eks_task_role_arn : aws_iam_role.eks-tasks[0].arn
+}
+
 module "main_key" {
   source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
   environment        = var.environment
@@ -7,7 +11,10 @@ module "main_key" {
   key_name           = "main-key"
   tags               = var.tags
   policy             = data.aws_iam_policy_document.main_kms_key.json
-  usage_grantee_arns = var.kms_grantees
+  usage_grantee_arns = concat(var.kms_grantees, [
+    module.rds_role.role_arn,
+    local.task_role_to_grant_kms_access
+  ])
 }
 
 module "rds_key" {
@@ -87,7 +94,9 @@ module "sns_key" {
   key_name           = "sns-key"
   tags               = var.tags
   policy             = data.aws_iam_policy_document.sns_kms_key.json
-  usage_grantee_arns = var.kms_grantees
+  usage_grantee_arns = concat(var.kms_grantees, [
+    local.task_role_to_grant_kms_access
+  ])
 }
 
 data "aws_iam_policy_document" "sns_kms_key" {
