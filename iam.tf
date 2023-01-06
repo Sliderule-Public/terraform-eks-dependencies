@@ -90,7 +90,7 @@ resource "aws_iam_policy" "optional_role_policy" {
 resource "aws_iam_role_policy_attachment" "optional_role_attachment" {
   count      = var.eks_task_role_arn != "" ? 1 : 0
   role       = var.eks_task_role_arn
-  policy_arn = aws_iam_policy.optional_role_policy.arn
+  policy_arn = aws_iam_policy.optional_role_policy[0].arn
 }
 
 #resource "aws_iam_role_policy" "optional_role" {
