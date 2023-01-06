@@ -80,3 +80,10 @@ POLICY
     policy = data.aws_iam_policy_document.eks_task.json
   }
 }
+
+resource "aws_iam_role_policy" "optional_role" {
+  count  = var.eks_task_role_arn != "" ? 1 : 0
+  name   = "optional_role_policy"
+  role   = var.eks_task_role_arn
+  policy = data.aws_iam_policy_document.eks_task.json
+}
