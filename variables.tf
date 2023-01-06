@@ -126,3 +126,8 @@ variable "server_iam_role_policy_statements" {
   default     = []
   description = "optional additional IAM policies to apply to the IAM role assigned to the EKS tasks"
 }
+variable "eks_task_role_name" {
+  type        = string
+  default     = ""
+  description = "optional role name. If passed, permissions required for EKS tasks will be attached to this role, and KMS grants enabled for the role."
+}

@@ -7,7 +7,10 @@ module "main_key" {
   key_name           = "main-key"
   tags               = var.tags
   policy             = data.aws_iam_policy_document.main_kms_key.json
-  usage_grantee_arns = var.kms_grantees
+  usage_grantee_arns = concat(var.kms_grantees, [
+    module.rds_role.role_arn,
+    local.task_role_to_grant_kms_access
+  ])
 }
 
 module "rds_key" {
@@ -87,7 +90,9 @@ module "sns_key" {
   key_name           = "sns-key"
   tags               = var.tags
   policy             = data.aws_iam_policy_document.sns_kms_key.json
-  usage_grantee_arns = var.kms_grantees
+  usage_grantee_arns = concat(var.kms_grantees, [
+    local.task_role_to_grant_kms_access
+  ])
 }
 
 data "aws_iam_policy_document" "sns_kms_key" {
