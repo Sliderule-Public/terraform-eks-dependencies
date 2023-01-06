@@ -81,9 +81,21 @@ POLICY
   }
 }
 
-resource "aws_iam_role_policy" "optional_role" {
+resource "aws_iam_policy" "optional_role_policy" {
   count  = var.eks_task_role_arn != "" ? 1 : 0
-  name   = "optional_role_policy"
-  role   = var.eks_task_role_arn
+  name   = "${var.company_name}-${var.environment}-eks-tasks"
   policy = data.aws_iam_policy_document.eks_task.json
 }
+
+resource "aws_iam_role_policy_attachment" "optional_role_attachment" {
+  count      = var.eks_task_role_arn != "" ? 1 : 0
+  role       = var.eks_task_role_arn
+  policy_arn = aws_iam_policy.optional_role_policy.arn
+}
+
+#resource "aws_iam_role_policy" "optional_role" {
+#  count  = var.eks_task_role_arn != "" ? 1 : 0
+#  name   = "optional_role_policy"
+#  role   = var.eks_task_role_arn
+#  policy = data.aws_iam_policy_document.eks_task.json
+#}
