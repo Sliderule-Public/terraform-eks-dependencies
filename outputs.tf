@@ -31,5 +31,5 @@ output "SQS_URL" {
 }
 
 output "EKS_TASK_ROLE_ARN" {
-  value = var.eks_task_role_arn == "" ? aws_iam_role.eks-tasks[0].arn : var.eks_task_role_arn
+  value = var.eks_task_role_name == "" ? aws_iam_role.eks-tasks[0].arn : var.eks_task_role_name
 }

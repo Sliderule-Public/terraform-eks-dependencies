@@ -1,7 +1,3 @@
-locals {
-  task_role_to_grant_kms_access = var.eks_task_role_arn != "" ? var.eks_task_role_arn : aws_iam_role.eks-tasks[0].arn
-}
-
 module "main_key" {
   source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
   environment        = var.environment
