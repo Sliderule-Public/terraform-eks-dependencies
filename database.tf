@@ -1,6 +1,6 @@
 module "rds_instance" {
   count                    = var.deploy_database == true ? 1 : 0
-  source                   = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.0"
+  source                   = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.1"
   environment              = var.environment
   company_name             = var.company_name
   region                   = var.region
@@ -20,4 +20,6 @@ module "rds_instance" {
   instance_type            = var.database_instance_type
   deploy_read_replica      = var.deploy_read_replica
   use_only_private_subnets = var.use_only_private_subnets
+  rds_engine_version       = "14.6"
+
 }
