@@ -20,6 +20,6 @@ module "rds_instance" {
   instance_type            = var.database_instance_type
   deploy_read_replica      = var.deploy_read_replica
   use_only_private_subnets = var.use_only_private_subnets
-  rds_engine_version       = "14.6"
+  rds_engine_version       = "14.7"
 
 }
