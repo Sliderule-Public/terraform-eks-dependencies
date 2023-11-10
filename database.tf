@@ -1,6 +1,6 @@
 module "rds_instance" {
   count                    = var.deploy_database == true ? 1 : 0
-  source                   = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.2"
+  source                   = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.3"
   environment              = var.environment
   company_name             = var.company_name
   region                   = var.region
