@@ -131,3 +131,13 @@ variable "eks_task_role_name" {
   default     = ""
   description = "optional role name. If passed, permissions required for EKS tasks will be attached to this role, and KMS grants enabled for the role."
 }
+
+variable "database_max_allocated_storage" {
+  type    = number
+  default = 200
+}
+
+variable "rds_engine_version" {
+  type    = string
+  default = "14.7"
+}
