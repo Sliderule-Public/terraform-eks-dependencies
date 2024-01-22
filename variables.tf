@@ -10,9 +10,19 @@ variable "region" {
   type        = string
   description = "aws region to deploy into"
 }
+variable "cross_region_replication_region" {
+  type        = string
+  description = "aws region to optionally deploy cross-region replicas into. Only needed if deploy_cross_region_read_replica is true"
+  default     = ""
+}
 variable "app_vpc_cidr" {
   type        = string
   description = "desired value for the VPC CIDR if create_vpc is true. If create_vpc is false, then the CIDR of the VPC being used in vpc_id."
+}
+variable "cross_region_vpc_cidr" {
+  type        = string
+  description = "desired value for the cross-region replication VPC CIDR if create_vpc is true and if deploy_cross_region_read_replica is true"
+  default     = ""
 }
 variable "initial_database" {
   type        = string
@@ -47,6 +57,11 @@ variable "deploy_read_replica" {
   type        = bool
   default     = false
   description = "if true, deploys an optional read replica for the RDS instance"
+}
+variable "deploy_cross_region_read_replica" {
+  type        = bool
+  default     = false
+  description = "Whether to add a cross region read replica"
 }
 variable "database_security_group_additional_rules" {
   type = list(object({
@@ -85,6 +100,11 @@ variable "vpc_id" {
   description = "only needed if create_vpc is false. VPC to use to host resources in this stack"
   default     = ""
 }
+variable "cross_region_vpc_id" {
+  type        = string
+  description = "only needed if create_vpc is false. VPC to use to host resources in this stack"
+  default     = ""
+}
 variable "private_subnet_ids" {
   type        = list(string)
   description = "only needed if create_vpc is false. Private subnets to use to host some private resources in this stack"
@@ -93,6 +113,16 @@ variable "private_subnet_ids" {
 variable "public_subnet_ids" {
   type        = list(string)
   description = "only needed if create_vpc is false. Public subnets to use to host some public resources in this stack"
+  default     = []
+}
+variable "cross_region_private_subnet_ids" {
+  type        = list(string)
+  description = "only needed if create_vpc is false. Private subnets to use to host some cross region private resources in this stack"
+  default     = []
+}
+variable "cross_region_public_subnet_ids" {
+  type        = list(string)
+  description = "only needed if create_vpc is false. Public subnets to use to host some cross region public resources in this stack"
   default     = []
 }
 variable "database_instance_type" {
