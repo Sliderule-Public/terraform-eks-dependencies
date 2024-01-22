@@ -17,7 +17,7 @@ module "rds_security_group_cross_region" {
   providers = {
     aws = aws.cross_region_replication
   }
-  count               = var.create_vpc && var.deploy_cross_region_read_replica ? 1 : 0
+  count               = var.deploy_cross_region_read_replica ? 1 : 0
   source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group"
   environment         = var.environment
   company_name        = var.company_name

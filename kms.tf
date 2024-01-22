@@ -26,6 +26,23 @@ module "rds_key" {
   ])
 }
 
+module "rds_key_cross_region" {
+  providers = {
+    aws = aws.cross_region_replication
+  }
+  count              = var.deploy_cross_region_read_replica ? 1 : 0
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  environment        = var.environment
+  region             = var.region
+  company_name       = var.company_name
+  account_id         = local.account_id
+  key_name           = "rds-key"
+  tags               = var.tags
+  usage_grantee_arns = concat(var.kms_grantees, [
+    module.rds_role.role_arn
+  ])
+}
+
 data "aws_iam_policy_document" "main_kms_key" {
   statement {
     effect  = "Allow"
