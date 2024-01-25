@@ -3,12 +3,12 @@ module "shared_vpc_cross_region" {
     aws = aws.cross_region_replication
   }
   count          = var.create_vpc && var.deploy_cross_region_read_replica ? 1 : 0
-  source         = "github.com/Modern-Logic/terraform-modules.git//composite/vpc"
+  source         = "github.com/Modern-Logic/terraform-modules.git//composite/vpc?ref=v1.9"
   environment    = var.environment
   company_name   = var.company_name
   vpc_cidr_block = var.cross_region_vpc_cidr
-  kms_key_arn    = module.main_key.key_arn
-  vpc_name       = "services"
+  kms_key_arn    = module.main_key_cross_region[0].key_arn
+  vpc_name       = "services-cross-region"
   region         = var.region
   tags           = var.tags
 }
@@ -18,7 +18,7 @@ module "rds_security_group_cross_region" {
     aws = aws.cross_region_replication
   }
   count               = var.deploy_cross_region_read_replica ? 1 : 0
-  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group"
+  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.9"
   environment         = var.environment
   company_name        = var.company_name
   tags                = var.tags

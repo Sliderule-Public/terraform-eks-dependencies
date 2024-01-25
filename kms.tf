@@ -1,5 +1,5 @@
 module "main_key" {
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.9"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -13,8 +13,27 @@ module "main_key" {
   ])
 }
 
+module "main_key_cross_region" {
+  providers = {
+    aws = aws.cross_region_replication
+  }
+  count              = var.create_vpc && var.deploy_cross_region_read_replica ? 1 : 0
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.9"
+  environment        = var.environment
+  region             = var.region
+  company_name       = var.company_name
+  account_id         = local.account_id
+  key_name           = "main-key-cross-region"
+  tags               = var.tags
+  policy             = data.aws_iam_policy_document.main_kms_key.json
+  usage_grantee_arns = concat(var.kms_grantees, [
+    module.rds_role.role_arn,
+    local.task_role_to_grant_kms_access
+  ])
+}
+
 module "rds_key" {
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.9"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -31,7 +50,7 @@ module "rds_key_cross_region" {
     aws = aws.cross_region_replication
   }
   count              = var.deploy_cross_region_read_replica ? 1 : 0
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.0"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.9"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -70,8 +89,13 @@ data "aws_iam_policy_document" "main_kms_key" {
       "*"
     ]
     principals {
-      identifiers = ["logs.us-west-1.amazonaws.com"]
-      type        = "Service"
+      identifiers = [
+        "logs.us-west-1.amazonaws.com",
+        "logs.us-west-2.amazonaws.com",
+        "logs.us-east-1.amazonaws.com",
+        "logs.us-east-2.amazonaws.com"
+      ]
+      type = "Service"
     }
   }
 
