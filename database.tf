@@ -19,7 +19,7 @@ module "rds_instance" {
   cross_region_public_subnets      = local.cross_region_public_subnet_ids
   tags                             = var.tags
   kms_key_arn                      = module.rds_key.key_arn
-  cross_region_kms_key_arn         = module.rds_key_cross_region[0].key_arn
+  cross_region_kms_key_arn         = var.deploy_cross_region_read_replica ? module.rds_key_cross_region[0].key_arn : ""
   initial_database                 = var.initial_database
   snapshot_identifier              = var.snapshot_identifier != "" ? var.snapshot_identifier : ""
   skip_final_snapshot              = var.skip_final_snapshot
