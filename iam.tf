@@ -30,10 +30,6 @@ data "aws_iam_policy_document" "eks_task" {
       effect    = statement.value["effect"]
       actions   = statement.value["actions"]
       resources = statement.value["resources"]
-      principals {
-        type        = statement.value["principals"]["type"]
-        identifiers = statement.value["principals"]["identifiers"]
-      }
     }
   }
 

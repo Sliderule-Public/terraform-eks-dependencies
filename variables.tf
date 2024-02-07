@@ -149,13 +149,9 @@ variable "deploy_database" {
 }
 variable "server_iam_role_policy_statements" {
   type = list(object({
-    effect     = string
-    actions    = list(string)
-    resources  = list(string)
-    principals = object({
-      type        = string
-      identifiers = list(string)
-    })
+    effect    = string
+    actions   = list(string)
+    resources = list(string)
   }))
   default     = []
   description = "optional additional IAM policies to apply to the IAM role assigned to the EKS tasks"
