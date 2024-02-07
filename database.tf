@@ -4,7 +4,7 @@ module "rds_instance" {
     aws.cross_region_replication = aws.cross_region_replication
   }
   count                            = var.deploy_database == true ? 1 : 0
-  source                           = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.9"
+  source                           = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.10"
   environment                      = var.environment
   company_name                     = var.company_name
   region                           = var.region
