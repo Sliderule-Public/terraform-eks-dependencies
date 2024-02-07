@@ -27,10 +27,13 @@ data "aws_iam_policy_document" "eks_task" {
   dynamic "statement" {
     for_each = var.server_iam_role_policy_statements
     content {
-      effect     = statement.value["effect"]
-      actions    = statement.value["actions"]
-      resources  = statement.value["resources"]
-      principals = statement.value["principals"]
+      effect    = statement.value["effect"]
+      actions   = statement.value["actions"]
+      resources = statement.value["resources"]
+      principals {
+        type        = statement.value["principals"]["type"]
+        identifiers = statement.value["principals"]["identifiers"]
+      }
     }
   }
 

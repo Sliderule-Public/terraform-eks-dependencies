@@ -152,7 +152,10 @@ variable "server_iam_role_policy_statements" {
     effect     = string
     actions    = list(string)
     resources  = list(string)
-    principals = any
+    principals = object({
+      type        = string
+      identifiers = list(string)
+    })
   }))
   default     = []
   description = "optional additional IAM policies to apply to the IAM role assigned to the EKS tasks"
