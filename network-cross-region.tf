@@ -2,7 +2,7 @@ module "shared_vpc_cross_region" {
   providers = {
     aws = aws.cross_region_replication
   }
-  count          = var.create_vpc && var.deploy_cross_region_read_replica ? 1 : 0
+  count          = var.create_vpc && var.deploy_cross_region_read_replica && var.cross_region_vpc_id == "" ? 1 : 0
   source         = "github.com/Modern-Logic/terraform-modules.git//composite/vpc?ref=v1.9"
   environment    = var.environment
   company_name   = var.company_name
