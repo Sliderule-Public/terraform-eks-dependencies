@@ -3,7 +3,7 @@ module "infrastructure_bucket" {
     aws                          = aws
     aws.cross_region_replication = aws.cross_region_replication
   }
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket?ref=v1.9"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket?ref=v1.10.2"
   environment        = var.environment
   region             = var.region
   replication_region = var.cross_region_replication_region
@@ -19,7 +19,7 @@ module "server_docs_bucket" {
     aws                          = aws
     aws.cross_region_replication = aws.cross_region_replication
   }
-  source                    = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket?ref=v1.9"
+  source                    = "github.com/Modern-Logic/terraform-modules.git//simple/s3_bucket?ref=v1.10.2"
   environment               = var.environment
   region                    = var.region
   replication_region        = var.cross_region_replication_region
