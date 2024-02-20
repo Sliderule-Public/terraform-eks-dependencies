@@ -44,8 +44,6 @@ data "aws_iam_policy_document" "eks_task" {
     effect    = "Allow"
     actions   = ["s3:*"]
     resources = [
-      "${module.server_docs_bucket.bucket_arn}/*",
-      module.server_docs_bucket.bucket_arn,
       "${module.server_docs_bucket.crr_bucket_arn}/*",
       module.server_docs_bucket.crr_bucket_arn
     ]

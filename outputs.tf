@@ -11,7 +11,7 @@ output "SHIELDRULE_ENVIRONMENT" {
 }
 
 output "SERVER_BUCKET" {
-  value = module.server_docs_bucket.bucket
+  value = module.server_docs_bucket.crr_bucket
 }
 
 output "REDIS_HOST" {
