@@ -1,8 +1,9 @@
 module "rds_role" {
   environment  = var.environment
   company_name = var.company_name
+  region       = var.region
   tags         = var.tags
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/iam_role?ref=v1.0"
+  source       = "github.com/Modern-Logic/terraform-modules.git//simple/iam_role?ref=v1.12.0"
   role_name    = "rds"
   service      = "rds.amazonaws.com"
   policy       = <<-EOF
@@ -58,7 +59,7 @@ data "aws_iam_policy_document" "eks_task" {
 
 resource "aws_iam_role" "eks-tasks" {
   count = var.eks_task_role_name == "" ? 1 : 0
-  name  = "${var.company_name}-${var.environment}-app-eks-tasks"
+  name  = "${var.company_name}-${var.environment}-${var.region}-app-eks-tasks"
 
   assume_role_policy = <<POLICY
 {
@@ -76,14 +77,14 @@ resource "aws_iam_role" "eks-tasks" {
 POLICY
 
   inline_policy {
-    name   = "eks-${var.environment}-tasks"
+    name   = "eks-${var.environment}-${var.region}-tasks"
     policy = data.aws_iam_policy_document.eks_task.json
   }
 }
 
 resource "aws_iam_policy" "optional_role_policy" {
   count  = var.eks_task_role_name != "" ? 1 : 0
-  name   = "${var.company_name}-${var.environment}-eks-tasks"
+  name   = "${var.company_name}-${var.environment}-${var.region}-eks-tasks"
   policy = data.aws_iam_policy_document.eks_task.json
 }
 
