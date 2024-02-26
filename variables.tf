@@ -171,3 +171,7 @@ variable "rds_engine_version" {
   type    = string
   default = "14.7"
 }
+variable "rds_auto_minor_version_upgrade" {
+  type    = bool
+  default = false
+}

@@ -4,7 +4,7 @@ module "rds_instance" {
     aws.cross_region_replication = aws.cross_region_replication
   }
   count                            = var.deploy_database == true ? 1 : 0
-  source                           = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.10.7"
+  source                           = "github.com/Modern-Logic/terraform-modules.git//simple/rds?ref=v1.12.1"
   environment                      = var.environment
   company_name                     = var.company_name
   region                           = var.region
@@ -31,4 +31,5 @@ module "rds_instance" {
   use_only_private_subnets         = var.use_only_private_subnets
   rds_engine_version               = var.rds_engine_version
   database_max_allocated_storage   = var.database_max_allocated_storage
+  rds_auto_minor_version_upgrade   = var.rds_auto_minor_version_upgrade
 }
