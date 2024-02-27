@@ -175,3 +175,8 @@ variable "rds_auto_minor_version_upgrade" {
   type    = bool
   default = false
 }
+variable "parameter_group_major_version" {
+  type        = string
+  description = "The major version of the parameter group. Ex. 14, 15"
+  default     = "14"
+}
