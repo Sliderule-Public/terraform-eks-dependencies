@@ -21,6 +21,7 @@ module "rds_security_group_cross_region" {
   source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.12.3"
   environment         = var.environment
   company_name        = var.company_name
+  region              = var.region
   tags                = var.tags
   security_group_name = "rds"
   vpc_id              = local.cross_region_vpc_id
