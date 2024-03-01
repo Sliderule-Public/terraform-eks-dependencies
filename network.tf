@@ -12,7 +12,7 @@ module "shared_vpc" {
 
 
 module "rds_security_group" {
-  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.12.4"
+  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.12.5"
   environment         = var.environment
   region              = var.region
   company_name        = var.company_name
