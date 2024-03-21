@@ -74,6 +74,19 @@ variable "database_security_group_additional_rules" {
   default     = []
   description = "optional additional security group rules for the database security group."
 }
+
+variable "cross_region_database_security_group_additional_rules" {
+  type = list(object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_block  = string
+  }))
+  default     = []
+  description = "optional additional security group rules for the database security group."
+}
+
 variable "elasticache_redis_security_group_rules" {
   type = list(object({
     description = string

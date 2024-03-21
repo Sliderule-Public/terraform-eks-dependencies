@@ -25,5 +25,5 @@ module "rds_security_group_cross_region" {
   tags                = var.tags
   security_group_name = "rds"
   vpc_id              = local.cross_region_vpc_id
-  ingress_rules       = var.use_only_private_subnets == false ? concat(local.rds_default_security_group_rules, local.auth_security_group_rules) : local.rds_default_security_group_rules
+  ingress_rules       = var.use_only_private_subnets == false ? concat(local.cross_region_rds_default_security_group_rules, local.auth_security_group_rules) : local.cross_region_rds_default_security_group_rules
 }

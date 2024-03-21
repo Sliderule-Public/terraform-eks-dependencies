@@ -32,6 +32,15 @@ locals {
       cidr_block  = var.app_vpc_cidr
     }
   ])
+  cross_region_rds_default_security_group_rules = concat(var.cross_region_database_security_group_additional_rules, [
+    {
+      description = "All traffic from private VPC"
+      from_port   = 5432
+      to_port     = 5432
+      protocol    = "tcp"
+      cidr_block  = var.cross_region_vpc_cidr
+    }
+  ])
   auth_security_group_rules = [
     {
       description = "Auth0"
