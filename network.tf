@@ -1,6 +1,6 @@
 module "shared_vpc" {
   count          = var.create_vpc == true ? 1 : 0
-  source         = "github.com/Modern-Logic/terraform-modules.git//composite/vpc"
+  source         = "github.com/Modern-Logic/terraform-modules.git//composite/vpc?ref=v1.13.2"
   environment    = var.environment
   company_name   = var.company_name
   vpc_cidr_block = var.app_vpc_cidr
@@ -12,7 +12,7 @@ module "shared_vpc" {
 
 
 module "rds_security_group" {
-  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.12.5"
+  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.13.0"
   environment         = var.environment
   region              = var.region
   company_name        = var.company_name

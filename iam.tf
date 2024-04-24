@@ -3,7 +3,7 @@ module "rds_role" {
   company_name = var.company_name
   region       = var.region
   tags         = var.tags
-  source       = "github.com/Modern-Logic/terraform-modules.git//simple/iam_role?ref=v1.12.0"
+  source       = "github.com/Modern-Logic/terraform-modules.git//simple/iam_role?ref=v1.13.0"
   role_name    = "rds"
   service      = "rds.amazonaws.com"
   policy       = <<-EOF

@@ -1,5 +1,5 @@
 module "main_key" {
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.12.3"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.13.0"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -18,7 +18,7 @@ module "main_key_cross_region" {
     aws = aws.cross_region_replication
   }
   count              = var.create_vpc ? 1 : 0
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.12.3"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.13.0"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -33,7 +33,7 @@ module "main_key_cross_region" {
 }
 
 module "rds_key" {
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.12.3"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.13.0"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -50,7 +50,7 @@ module "rds_key_cross_region" {
     aws = aws.cross_region_replication
   }
   count              = var.deploy_cross_region_read_replica ? 1 : 0
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.12.3"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.13.0"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
@@ -123,7 +123,7 @@ data "aws_iam_policy_document" "main_kms_key" {
 }
 
 module "sns_key" {
-  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.12.3"
+  source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.13.0"
   environment        = var.environment
   region             = var.region
   company_name       = var.company_name
