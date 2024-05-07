@@ -1,3 +1,10 @@
+locals {
+  additional_grantee_arns = var.deploy_cross_region_bucket ? [
+    module.infrastructure_bucket.replication_role_arn,
+    module.server_docs_bucket.replication_role_arn
+  ] : []
+}
+
 module "main_key" {
   source             = "github.com/Modern-Logic/terraform-modules.git//simple/kms_key?ref=v1.13.0"
   environment        = var.environment
@@ -7,9 +14,9 @@ module "main_key" {
   key_name           = "main-key"
   tags               = var.tags
   policy             = data.aws_iam_policy_document.main_kms_key.json
-  usage_grantee_arns = concat(var.kms_grantees, [
+  usage_grantee_arns = concat(var.kms_grantees, local.additional_grantee_arns, [
     module.rds_role.role_arn,
-    local.task_role_to_grant_kms_access
+    local.task_role_to_grant_kms_access,
   ])
 }
 
@@ -26,9 +33,9 @@ module "main_key_cross_region" {
   key_name           = "main-key-cross-region"
   tags               = var.tags
   policy             = data.aws_iam_policy_document.main_kms_key.json
-  usage_grantee_arns = concat(var.kms_grantees, [
+  usage_grantee_arns = concat(var.kms_grantees, local.additional_grantee_arns, [
     module.rds_role.role_arn,
-    local.task_role_to_grant_kms_access
+    local.task_role_to_grant_kms_access,
   ])
 }
 

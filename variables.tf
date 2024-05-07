@@ -193,3 +193,7 @@ variable "parameter_group_major_version" {
   description = "The major version of the parameter group. Ex. 14, 15"
   default     = "14"
 }
+variable "deploy_cross_region_bucket" {
+  type    = bool
+  default = true
+}
