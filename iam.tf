@@ -41,13 +41,16 @@ data "aws_iam_policy_document" "eks_task" {
     resources = [module.sqs.arn]
   }
 
-  statement {
-    effect    = "Allow"
-    actions   = ["s3:*"]
-    resources = [
-      "${module.server_docs_bucket.crr_bucket_arn}/*",
-      module.server_docs_bucket.crr_bucket_arn
-    ]
+  dynamic statement {
+    for_each = var.deploy_s3_buckets ? [1] : []
+    content {
+      effect    = "Allow"
+      actions   = ["s3:*"]
+      resources = [
+        "${module.server_docs_bucket[0].crr_bucket_arn}/*",
+        module.server_docs_bucket[0].crr_bucket_arn
+      ]
+    }
   }
 
   statement {

@@ -1,4 +1,5 @@
 module "infrastructure_bucket" {
+  count     = var.deploy_s3_buckets ? 1 : 0
   providers = {
     aws                          = aws
     aws.cross_region_replication = aws.cross_region_replication
@@ -16,6 +17,7 @@ module "infrastructure_bucket" {
 }
 
 module "server_docs_bucket" {
+  count     = var.deploy_s3_buckets ? 1 : 0
   providers = {
     aws                          = aws
     aws.cross_region_replication = aws.cross_region_replication
@@ -31,4 +33,14 @@ module "server_docs_bucket" {
   upload_cors_rules_enabled        = true
   tags                             = var.tags
   deploy_cross_region_read_replica = var.deploy_cross_region_bucket
+}
+
+moved {
+  from = module.infrastructure_bucket
+  to   = module.infrastructure_bucket[0]
+}
+
+moved {
+  from = module.server_docs_bucket
+  to   = module.server_docs_bucket[0]
 }

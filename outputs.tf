@@ -11,7 +11,7 @@ output "SHIELDRULE_ENVIRONMENT" {
 }
 
 output "SERVER_BUCKET" {
-  value = module.server_docs_bucket.crr_bucket
+  value = var.deploy_s3_buckets ? module.server_docs_bucket[0].crr_bucket : null
 }
 
 output "REDIS_HOST" {

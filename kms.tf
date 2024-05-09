@@ -1,7 +1,7 @@
 locals {
-  additional_grantee_arns = var.deploy_cross_region_bucket ? [
-    module.infrastructure_bucket.replication_role_arn,
-    module.server_docs_bucket.replication_role_arn
+  additional_grantee_arns = var.deploy_cross_region_bucket && var.deploy_s3_buckets ? [
+    module.infrastructure_bucket[0].replication_role_arn,
+    module.server_docs_bucket[0].replication_role_arn
   ] : []
 }
 

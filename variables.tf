@@ -197,3 +197,7 @@ variable "deploy_cross_region_bucket" {
   type    = bool
   default = true
 }
+variable "deploy_s3_buckets" {
+  type    = bool
+  default = true
+}
