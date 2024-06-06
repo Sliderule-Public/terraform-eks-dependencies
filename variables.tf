@@ -201,3 +201,9 @@ variable "deploy_s3_buckets" {
   type    = bool
   default = true
 }
+
+variable "cross_region_task_role_name" {
+  type        = string
+  description = "Name of the Sliderule task role in the DR region. Used to attach permissions to the DR region task role to allow it to read from the primary region's replication S3 bucket. Only needed it deploy_cross_region_bucket is true"
+  default     = ""
+}
