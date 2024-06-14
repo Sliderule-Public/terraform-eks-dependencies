@@ -207,3 +207,8 @@ variable "cross_region_task_role_name" {
   description = "Name of the Sliderule task role in the DR region. Used to attach permissions to the DR region task role to allow it to read from the primary region's replication S3 bucket. Only needed it deploy_cross_region_bucket is true"
   default     = ""
 }
+variable "use_custom_parameter_group_for_read_replicas" {
+  type        = bool
+  default     = false
+  description = "If true, will use a custom parameter group for read replicas. Used because cross-region read replicas don't inherit the parameter group from the source DB and can't be created with a custom parameter group"
+}
