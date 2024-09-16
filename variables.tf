@@ -212,3 +212,38 @@ variable "use_custom_parameter_group_for_read_replicas" {
   default     = false
   description = "If true, will use a custom parameter group for read replicas. Used because cross-region read replicas don't inherit the parameter group from the source DB and can't be created with a custom parameter group"
 }
+variable "database_security_group_additional_rules_prefix_list" {
+  type = list(object({
+    description     = string
+    from_port       = number
+    to_port         = number
+    protocol        = string
+    prefix_list_ids = list(string)
+  }))
+  default     = []
+  description = "optional additional security group rules for the database security group, using prefix lists."
+}
+
+variable "cross_region_database_security_group_additional_rules_prefix_list" {
+  type = list(object({
+    description     = string
+    from_port       = number
+    to_port         = number
+    protocol        = string
+    prefix_list_ids = list(string)
+  }))
+  default     = []
+  description = "optional additional security group rules for the database security group, using prefix lists."
+}
+
+variable "elasticache_redis_security_group_rules_prefix_list" {
+  type = list(object({
+    description     = string
+    from_port       = number
+    to_port         = number
+    protocol        = string
+    prefix_list_ids = list(string)
+  }))
+  default     = []
+  description = "security group rules for the elasticache for redis security group, using prefix lists."
+}

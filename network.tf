@@ -12,7 +12,7 @@ module "shared_vpc" {
 
 
 module "rds_security_group" {
-  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.13.0"
+  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.14.6"
   environment         = var.environment
   region              = var.region
   company_name        = var.company_name
@@ -20,6 +20,7 @@ module "rds_security_group" {
   security_group_name = "rds"
   vpc_id              = local.vpc_id
   ingress_rules       = var.use_only_private_subnets == false ? concat(local.rds_default_security_group_rules, local.auth_security_group_rules) : local.rds_default_security_group_rules
+  pl_ingress_rules    = var.database_security_group_additional_rules_prefix_list
 }
 
 locals {

@@ -1,11 +1,12 @@
 module "redis_security_group" {
-  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.13.0"
+  source              = "github.com/Modern-Logic/terraform-modules.git//simple/vpc_security_group?ref=v1.14.6"
   environment         = var.environment
   company_name        = var.company_name
   tags                = var.tags
   security_group_name = "redis-eks"
   vpc_id              = local.vpc_id
   ingress_rules       = var.elasticache_redis_security_group_rules
+  pl_ingress_rules    = var.database_security_group_additional_rules_prefix_list
 }
 
 module "redis" {
